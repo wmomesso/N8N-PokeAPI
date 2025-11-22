@@ -1,0 +1,102 @@
+{
+  "name": "Exemplo PokeAPI - Random Pokemon",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e6e54a58-05c3-4d16-980a-16e1a70c2302",
+      "name": "Ao clicar em Executar",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Gera um número aleatório entre 1 e 1025 (total de pokemons aprox)\nreturn [\n  {\n    json: {\n      random_id: Math.floor(Math.random() * 1025) + 1\n    }\n  }\n];"
+      },
+      "id": "c8401e04-2447-4643-abd4-592a6acf2511",
+      "name": "Gerar ID Aleatório",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://pokeapi.co/api/v2/pokemon/' + $json.random_id }}",
+        "options": {}
+      },
+      "id": "1b1db68b-80eb-49bd-93ee-20a2b12d1a19",
+      "name": "Buscar na PokéAPI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        688,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0ab16d13-cffd-4099-9205-657cd265a352",
+      "name": "Formatar Dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        48
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Ao clicar em Executar": {
+      "main": [
+        [
+          {
+            "node": "Gerar ID Aleatório",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gerar ID Aleatório": {
+      "main": [
+        [
+          {
+            "node": "Buscar na PokéAPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar na PokéAPI": {
+      "main": [
+        [
+          {
+            "node": "Formatar Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d3ccb338-1be5-47b0-95dd-72f169f21bf5",
+  "meta": {
+    "instanceId": "5722348900abd4384387f987e0977f3aa5de444d2de09854984b8a2f994eae2c"
+  },
+  "id": "t8RSvlbb4X6mduY3",
+  "tags": []
+}
