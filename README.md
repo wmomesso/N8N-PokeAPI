@@ -126,4 +126,4 @@ Após a execução, o nó final ("Formatar Dados") retornará um JSON limpo como
 * [Documentação da PokéAPI](https://pokeapi.co/docs/v2)
 
 ---
-*Desenvolvido para fins educacionais.*
+*Desenvolvido para fins educacionais. Com base no Bootcamp Santander + DIO.io*
